@@ -22,5 +22,3 @@ After performing RFDc Discovery with a suitable algorithm on all the splitted da
 **MinimalRFDS** folder. For example, this repository contains the minimal RFDcs related to experiment with ID 20 reported in the paper. These RFDs can be then analyzed with the script provided in the folder **RFD Analysis**, which will compute both the divergence metrics and the confusion matrix-based metrics and will show the final correlation obtained by them. To this end, the script takes as parameter the version number and the perfomance of the model in terms of F1-Measure. 
   
 ## Baseline Approaches
-For baseline approaches, we refer the Reader to the FROUROS library and it documentation. 
-

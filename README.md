@@ -3,7 +3,7 @@ Supplemental material for the paper "A metadata-driven approach for concept drif
 
 ## Datasets and Configurations
 
-This repo includes a complete example of how to apply the proposed methodology described in the paper " "A Metadata-Driven Approach for Concept Drift Detection in Machine Learning Systems."
+This repo includes a complete example of how to apply the proposed methodology described in the paper "A Metadata-Driven Approach for Concept Drift Detection in Machine Learning Systems."
 It contains the original datasets used in the experimental phase, which can be found in the **Dataset** folder). 
 
 Additionally, this repository includes a utility script (see the **Generate Configuration** folder) that generates random test configurations consisting of one training batch and a number of test batches. 

@@ -21,7 +21,14 @@ The results are saved in subfolders associated with the percentage of the test b
 ## RFD Analysis
 After performing RFDc Discovery with a suitable algorithm on all the splitted data batches, the resulting RFD are filtered according to the strategy described in the paper. Thus, for each class and for each data batch, the filtered RFDs are stored in the
 **MinimalRFDS** folder. For example, this repository contains the minimal RFDcs related to experiment with ID 20 reported in the paper. 
-These RFDs can be then analyzed with the script provided in the folder **RFD Analysis**, takes as parameter the target labels, the number of the test configurations, the percentages of the splits and the performance of the model on each class. 
+The syntax used to represent RFDs should be the following:
+```
+RHS;COL0;COL1;COL2;COL3;COL4;COL5;COL6;COL7;COL8;COL9;COL10;COL11;COL12;COL13;COL14;COL15
+COL0;1.0;0.0;?;0.0;0.0;0.0;?;?;?;?;?;?;?;?;?;?
+```
+Specifically, each RFD is represented by a row The column **RHS** contains the attribute present in the RHS of the RFD. The attributes whose values are "?" are not involved in the RFD, whereas otherwise its associated similarity threshold is reported.
+For example, the example above represent the RFD: COL1(0.0), COL3(0.0), COL4(0.0), COL5(0.0)-->COL0(1.0)
+These RFDs files can be then analyzed with the script provided in the folder **RFD Analysis**, takes as parameter the target labels, the number of the test configurations, the percentages of the splits and the performance of the model on each class. 
 
 ```
 classes=[0, 1]
@@ -36,7 +43,6 @@ f1_c1 =  np.array([93, 84, 84])
 The script will compute both the divergence metrics and the confusion matrix-based metrics and will show the final correlation obtained by them. 
 An example of output is the following:
 
-<br><br>
 <img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Correlations.png?raw=true" width="80%">
 
   

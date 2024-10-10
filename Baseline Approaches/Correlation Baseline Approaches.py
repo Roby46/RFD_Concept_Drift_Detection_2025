@@ -65,8 +65,6 @@ def printResults(raw_data, c0_values, c1_values, metrics, reverse_, message, thr
 
     # Stampa i risultati ordinati per valore medio
     print(message)
-    position=1
-    metric_type="Baseline"
     for metric, mean_value, abs_mean_value in sorted_results_mean:
         if(operator==">"):
             color = bcolors.OKGREEN if mean_value > threshold else bcolors.WARNING
@@ -80,34 +78,17 @@ def printResults(raw_data, c0_values, c1_values, metrics, reverse_, message, thr
             mean_value,
             bcolors.ENDC
         )
-        position=position+1
+    print(90 * "=")
 
 def computeDistance(percentages, encoding, current_enc_f1_perf, hell_max,hell_mean,hinorm_max,hinorm_mean):
-    print(encoding)
-    print("Hellinger MAX", 150*"=")
-    print("F1")
     correlation_coefficient_f1_hell_max = np.corrcoef(current_enc_f1_perf,hell_max)[0, 1]
-    print(correlation_coefficient_f1_hell_max)
-    
-    print("Hellinger MEAN", 150*"=")
-    print("F1")
     correlation_coefficient_f1_hell_mean = np.corrcoef(current_enc_f1_perf,hell_mean)[0, 1]
-    print(correlation_coefficient_f1_hell_mean)
-
-    print("Hinorm MAX", 150 * "=")
-    print("F1")
     correlation_coefficient_f1_hinorm_max = np.corrcoef(current_enc_f1_perf, hinorm_max)[0, 1]
-    print(correlation_coefficient_f1_hinorm_max)
-
-    print("Hinorm MEAN", 150 * "=")
-    print("F1")
     correlation_coefficient_f1_hinorm_mean = np.corrcoef(current_enc_f1_perf, hinorm_mean)[0, 1]
-    print(correlation_coefficient_f1_hinorm_mean)
 
     correlation_distances_f1 = np.array(
         [correlation_coefficient_f1_hell_max,correlation_coefficient_f1_hell_mean,
          correlation_coefficient_f1_hinorm_max,correlation_coefficient_f1_hinorm_mean])
-
 
     risultati = {
         'correlations_f1': correlation_distances_f1 }
@@ -117,7 +98,7 @@ def computeDistance(percentages, encoding, current_enc_f1_perf, hell_max,hell_me
 
 
 #Codifiche
-methods=[0,1]
+target_labels=[0, 1]
 
 #Scrittura nel file di risultati
 write_results=True
@@ -150,7 +131,7 @@ hinorm_max=np.array([hinorm_max_c0,hinorm_max_c1])
 hinorm_mean=np.array([hinorm_mean_c0,hinorm_mean_c1])
 
 i=0
-for encoding in methods:
+for encoding in target_labels:
     #Chiamata funzione di controllo
     risultati=computeDistance(percentages, encoding,perfomance_f1_encoding[i],hell_max[i],hell_mean[i],hinorm_max[i],hinorm_mean[i])
     encoding_correlation_dist_f1 = risultati['correlations_f1']
@@ -158,11 +139,8 @@ for encoding in methods:
 
     i=+1
 
-
-
 c0_corr_f1=correlations_f1["0"]
 c1_corr_f1=correlations_f1["1"]
-
 
 metrics=["Hellinger MAX", "Hellinger MEAN", "HiNorm MAX", "Hinorm MEAN"]
 

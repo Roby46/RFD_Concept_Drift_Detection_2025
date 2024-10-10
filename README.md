@@ -27,7 +27,7 @@ RHS;COL0;COL1;COL2;COL3;COL4;COL5;COL6;COL7;COL8;COL9;COL10;COL11;COL12;COL13;CO
 COL0;1.0;0.0;?;0.0;0.0;0.0;?;?;?;?;?;?;?;?;?;?
 ```
 Specifically, each RFD is represented by a row The column **RHS** contains the attribute present in the RHS of the RFD. The attributes whose values are "?" are not involved in the RFD, whereas otherwise its associated similarity threshold is reported.
-For example, the example above represent the RFD: COL1(0.0), COL3(0.0), COL4(0.0), COL5(0.0)-->COL0(1.0)
+For example, the example above represent the RFD: COL1(0.0), COL3(0.0), COL4(0.0), COL5(0.0)-->COL0(1.0).
 These RFDs files can be then analyzed with the script provided in the folder **RFD Analysis**, takes as parameter the target labels, the number of the test configurations, the percentages of the splits and the performance of the model on each class. 
 
 ```
@@ -47,4 +47,5 @@ An example of output is the following:
 
   
 ## Baseline Approaches
-[FROUROS](https://github.com/IFCA-Advanced-Computing/frouros)
+For testing the implemented approaches we refer the reader to the [FROUROS](https://github.com/IFCA-Advanced-Computing/frouros)
+library, which provides the implementation of several Data Drift approaches. 

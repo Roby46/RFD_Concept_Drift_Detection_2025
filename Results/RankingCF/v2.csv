@@ -1,0 +1,9 @@
+Version,Measure,Model_Metric,Position,Correlation,Metric_Type,Eval_Type
+2,CF$_3$,F1,1,0.923823364901116,CF,Standard
+2,CF$_7$,F1,2,0.8889761037120125,CF,Standard
+2,CF$_2$,F1,3,0.8889423729214454,CF,Standard
+2,CF$_1$,F1,4,0.802089170532484,CF,Standard
+2,CF$_5$,F1,5,-0.0540228951574089,CF,Standard
+2,CF$_6$,F1,6,-0.1303785953521845,CF,Standard
+2,CF$_TEMP$,F1,7,-0.1855157708043102,CF,Standard
+2,CF$_4$,F1,8,-0.2358753680505533,CF,Standard

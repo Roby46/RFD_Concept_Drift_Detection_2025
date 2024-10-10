@@ -1,0 +1,17 @@
+Version,Measure,Model_Metric,Position,Correlation,Metric_Type,Eval_Type
+7,D$_8$,F1,1,-0.9928464957489274,Distance,Standard
+7,D$_1$,F1,2,-0.9839764221009304,Distance,Standard
+7,D$_{11}$,F1,3,-0.983455240973258,Distance,Standard
+7,D$_5$,F1,4,-0.983366882032191,Distance,Standard
+7,D$_3$,F1,5,-0.982965025185548,Distance,Standard
+7,D$_7$,F1,6,-0.9825921476341424,Distance,Standard
+7,D$_4$,F1,7,-0.9820745520546256,Distance,Standard
+7,D$_{12}$,F1,8,-0.981962243781773,Distance,Standard
+7,D$_2$,F1,9,-0.9814797856444208,Distance,Standard
+7,D$_6$,F1,10,-0.9812689651488948,Distance,Standard
+7,D$_{10}$,F1,11,-0.9811844471123246,Distance,Standard
+7,D$_9$,F1,12,-0.9765214086625174,Distance,Standard
+7,Hi$_{max}$,F1,13,-0.9438300540012744,Baseline,Standard
+7,He$_{mean}$,F1,14,-0.919691795881796,Baseline,Standard
+7,He$_{max}$,F1,15,-0.911719583192887,Baseline,Standard
+7,Hi$_{mean}$,F1,16,-0.8273416071756601,Baseline,Standard

@@ -111,7 +111,7 @@ class bcolors:
     DARK_PURPLE = '\033[38;5;57m'
     LIGHT_PURPLE = '\033[38;5;141m'
 
-def confusion_matrix_score(immutate, nuove, invalidate):
+def confusion_matrix_score_1(immutate, nuove, invalidate):
     if(immutate==0):
         immutate=1
     tp=immutate
@@ -130,11 +130,7 @@ def confusion_matrix_score(immutate, nuove, invalidate):
     except ZeroDivisionError:
         f1=0
     # Print the results
-    print(bcolors.OKBLUE + "", 67 * '-', "Confusion Matrix", 67 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate ")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Nuove ")
+    print(bcolors.OKBLUE + "", 67 * '-', "Confusion Matrix 1", 67 * '-')
     print(bcolors.OKBLUE + "--- False negative -> Invalidate ")
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
@@ -146,7 +142,7 @@ def confusion_matrix_score(immutate, nuove, invalidate):
 
 
 
-def confusion_matrix_score2(immutate, specializzate_non_spec, simili_non_spec, specializzate_spec, simili_spec, nuove, invalidate):
+def confusion_matrix_score_2(immutate, specializzate_non_spec, simili_non_spec, specializzate_spec, simili_spec, nuove, invalidate):
     if(immutate==0):
         immutate=1
     tp=immutate + simili_spec + specializzate_spec
@@ -165,11 +161,6 @@ def confusion_matrix_score2(immutate, specializzate_non_spec, simili_non_spec, s
     except ZeroDivisionError:
         f1=0    # Print the results
     print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 2", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate + simili con specializzazioni bloccando la soglia a dx e sx + specializzazioni con stesse soglie su attr. in comune")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Nuove + simili rimanenti + specializzate rimanenti ")
-    print(bcolors.OKBLUE + "--- False negative -> Invalidate ")
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -180,7 +171,7 @@ def confusion_matrix_score2(immutate, specializzate_non_spec, simili_non_spec, s
 
 
 
-def confusion_matrix_score2b(immutate, specializzate_spec, simili_spec, nuove, invalidate):
+def confusion_matrix_score_3(immutate, specializzate_spec, simili_spec, nuove, invalidate):
     if(immutate==0):
         immutate=1
     tp=immutate + simili_spec + specializzate_spec
@@ -198,12 +189,7 @@ def confusion_matrix_score2b(immutate, specializzate_spec, simili_spec, nuove, i
         f1 = 2 * (precision * recall) / (precision + recall)
     except ZeroDivisionError:
         f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 2b", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate + simili con specializzazioni bloccando la soglia a dx e sx + specializzazioni con stesse soglie su attr. in comune")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Nuove + simili rimanenti + specializzate rimanenti ")
-    print(bcolors.OKBLUE + "--- False negative -> Invalidate ")
+    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 3", 66 * '-')
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -214,7 +200,7 @@ def confusion_matrix_score2b(immutate, specializzate_spec, simili_spec, nuove, i
 
 
 
-def confusion_matrix_score3(immutate, specializzate, simili, nuove, invalidate):
+def confusion_matrix_score_4(immutate, specializzate, simili, nuove, invalidate):
 
     if(immutate==0):
         immutate=1
@@ -234,12 +220,7 @@ def confusion_matrix_score3(immutate, specializzate, simili, nuove, invalidate):
         f1 = 2 * (precision * recall) / (precision + recall)
     except ZeroDivisionError:
         f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 3", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Nuove + Simili + Specializzazioni del nuovo log")
-    print(bcolors.OKBLUE + "--- False negative -> Invalidate ")
+    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 4", 66 * '-')
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -248,40 +229,7 @@ def confusion_matrix_score3(immutate, specializzate, simili, nuove, invalidate):
 
     return recall, precision, accuracy, f1
 
-def confusion_matrix_score3b(immutate, spec_old, simili, nuove, invalidate):
-
-    if(immutate==0):
-        immutate=1
-    tp=immutate
-    tn=0
-    fp=nuove + spec_old + simili
-    fn=invalidate
-    # Calculate Precision
-    precision = tp / (tp + fp)
-    # Calculate Recall
-    recall = tp / (tp + fn)
-    # Calculate Accuracy
-    accuracy = (tp + tn) / (tp + tn + fp + fn)
-    # Calculate F1 Score
-    try:
-        f1 = 2 * (precision * recall) / (precision + recall)
-    except ZeroDivisionError:
-        f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 3b", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Nuove + Simili + Specializzazioni del log originale")
-    print(bcolors.OKBLUE + "--- False negative -> Invalidate ")
-    print("Risultati")
-    print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
-    print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
-    print(bcolors.OKBLUE + "--- Accuracy", bcolors.WARNING +  f'{accuracy}')
-    print(bcolors.OKBLUE + "--- F1 Score", bcolors.WARNING +  f'{f1}')
-
-    return recall, precision, accuracy, f1
-
-def confusion_matrix_score4(immutate, specializzate_log_originale, nuove, invalidate):
+def confusion_matrix_score_5(immutate, specializzate_log_originale, nuove, invalidate):
 
     if(immutate==0):
         immutate=1
@@ -300,12 +248,7 @@ def confusion_matrix_score4(immutate, specializzate_log_originale, nuove, invali
         f1 = 2 * (precision * recall) / (precision + recall)
     except ZeroDivisionError:
         f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 4", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Invalidate + specializzate del log originale")
-    print(bcolors.OKBLUE + "--- False negative -> Nuove ")
+    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 5", 66 * '-')
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -314,7 +257,7 @@ def confusion_matrix_score4(immutate, specializzate_log_originale, nuove, invali
 
     return recall, precision, accuracy, f1
 
-def confusion_matrix_score5(immutate, specializzate_log_originale, nuove, invalidate, specializzate_nuovo_log):
+def confusion_matrix_score_6(immutate, specializzate_log_originale, nuove, invalidate, specializzate_nuovo_log):
 
     if(immutate==0):
         immutate=1
@@ -334,12 +277,7 @@ def confusion_matrix_score5(immutate, specializzate_log_originale, nuove, invali
         f1 = 2 * (precision * recall) / (precision + recall)
     except ZeroDivisionError:
         f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 5", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Invalidate + specializzate del log originale")
-    print(bcolors.OKBLUE + "--- False negative -> Nuove + specializzate del nuovo log")
+    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 6", 66 * '-')
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -349,7 +287,7 @@ def confusion_matrix_score5(immutate, specializzate_log_originale, nuove, invali
     return recall, precision, accuracy, f1
 
 
-def confusion_matrix_score6(immutate, specializzate_log_originale, nuove, invalidate, specializzate_nuovo_log):
+def confusion_matrix_score_7(immutate, specializzate_log_originale, nuove, invalidate, specializzate_nuovo_log):
 
     if(immutate==0):
         immutate=1
@@ -369,12 +307,7 @@ def confusion_matrix_score6(immutate, specializzate_log_originale, nuove, invali
         f1 = 2 * (precision * recall) / (precision + recall)
     except ZeroDivisionError:
         f1=0    # Print the results
-    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 6", 66 * '-')
-    print(bcolors.OKBLUE + "Calcolo:")
-    print(bcolors.OKBLUE + "--- True positive -> Immutate + Generalizzate")
-    print(bcolors.OKBLUE + "--- True negative -> 0 ")
-    print(bcolors.OKBLUE + "--- False positive -> Invalidate")
-    print(bcolors.OKBLUE + "--- False negative -> Nuove + specializzate del nuovo log")
+    print(bcolors.OKBLUE + "", 66 * '-', "Confusion Matrix 7", 66 * '-')
     print("Risultati")
     print(bcolors.OKBLUE + "--- Precision", bcolors.WARNING +  f'{precision}')
     print(bcolors.OKBLUE + "--- Recall", bcolors.WARNING +  f'{recall}')
@@ -384,7 +317,7 @@ def confusion_matrix_score6(immutate, specializzate_log_originale, nuove, invali
     return recall, precision, accuracy, f1
 
 
-def distanceMetric2(nuove, gen , simili, lenght): #ok
+def distanceMetric1(nuove, gen , simili, lenght): #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_generalizzate = 0.5 * peso_massimo_singolo
@@ -407,14 +340,12 @@ def distanceMetric2(nuove, gen , simili, lenght): #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 2", 70 * '-')
-    print("Calcolo: nuove (1) + generalizzate (0.5) + simili (0.05)")
-    print("Normalizzate rispetto la lunghezza del nuovo log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 1", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
-def distanceMetric3(nuove, gen, simili, lenght, invalidate):   #ok
+def distanceMetric2(nuove, gen, simili, lenght, invalidate):   #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_generalizzate = 0.5 * peso_massimo_singolo
@@ -438,15 +369,13 @@ def distanceMetric3(nuove, gen, simili, lenght, invalidate):   #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 3", 70 * '-')
-    print("Calcolo: nuove (1) + specializzate nel nuovo log (0.5) + simili (0.05) + invalidate (1)")
-    print("Normalizzate rispetto la lunghezza del nuovo log + il numero di invalidate")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 2", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric4(nuove, lenght, invalidate): #ok
+def distanceMetric3(nuove, lenght, invalidate): #ok
     peso_massimo_singolo = 1
 
     # Calcolo della distanza totale
@@ -464,15 +393,13 @@ def distanceMetric4(nuove, lenght, invalidate): #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 4", 70 * '-')
-    print("Calcolo: nuove (1) + invalidate (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 3", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric5(nuove, gen, tipo_generalizzazioni, simili, lenght, invalidate):  #ok
+def distanceMetric4(nuove, gen, tipo_generalizzazioni, simili, lenght, invalidate):  #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -502,15 +429,13 @@ def distanceMetric5(nuove, gen, tipo_generalizzazioni, simili, lenght, invalidat
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 5", 70 * '-')
-    print("Calcolo: nuove (1) + generalizzate nel nuovo log di primo livello (0.25) + altre generalizzate nel nuovo log (0.5) + simili (0.05) + invalidate (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 4", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric6(spec, simili, lenght, invalidate):  #ok
+def distanceMetric5(spec, simili, lenght, invalidate):  #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -536,15 +461,13 @@ def distanceMetric6(spec, simili, lenght, invalidate):  #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 6", 70 * '-')
-    print("Calcolo: invalidate (1) + specializzate del log originale (0.5) + simili (0.05)")
-    print("Normalizzate rispetto la lunghezza del log originale")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 5", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric7(nuove, gen, simili_gen, lenght, invalidate):   #ok
+def distanceMetric6(nuove, gen, simili_gen, lenght, invalidate):   #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -569,15 +492,13 @@ def distanceMetric7(nuove, gen, simili_gen, lenght, invalidate):   #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 7", 70 * '-')
-    print("Calcolo: nuove (1) + generalizzate nel nuovo log (0.5) + simili (0.05) + invalidate (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 6", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric8(spec,tipo_specializzazioni, simili, lenght, invalidate): #ok
+def distanceMetric7(spec,tipo_specializzazioni, simili, lenght, invalidate): #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -611,15 +532,13 @@ def distanceMetric8(spec,tipo_specializzazioni, simili, lenght, invalidate): #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 8", 70 * '-')
-    print("Calcolo: invalidate (1) + specializzate del log originale di primo livello (0.25) + altre specializzate del log originale (0.5) + simili (0.05)")
-    print("Normalizzate rispetto la lunghezza del log originale")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 7", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric9(nuove, generalizzate_spec, simili_spec, lenght, invalidate):
+def distanceMetric8(nuove, generalizzate_spec, simili_spec, lenght, invalidate):
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -646,15 +565,13 @@ def distanceMetric9(nuove, generalizzate_spec, simili_spec, lenght, invalidate):
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 9", 70 * '-')
-    print("Calcolo: invalidate (1) + generalizzate del log originale con stesse soglie su attr in comune (0.5) + simili con RHS o LHS bloccato (0.5) + nuove (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 8", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def distanceMetric10(nuove, specializzate, tipologia_specializzate, generalizzate, tipologia_generalizzate, simili, lenght, invalidate):
+def distanceMetric9(nuove, specializzate, tipologia_specializzate, generalizzate, tipologia_generalizzate, simili, lenght, invalidate):
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.5 * peso_massimo_singolo
@@ -696,15 +613,12 @@ def distanceMetric10(nuove, specializzate, tipologia_specializzate, generalizzat
     if (distanza > 1):
         distanza = 1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 10", 70 * '-')
-    print(
-        "Calcolo: invalidate (1) + specializzate del log originale di primo livello (0.25) e altre (0.5) + specializzate del log nuovo di primo livello (0.25) e altre (0.5) + simili (0.05) * 2 + nuove (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 9", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
-def distanceMetric11(spec,tipo_specializzazioni, simili, lenght, invalidate): #ok
+def distanceMetric10(spec,tipo_specializzazioni, simili, lenght, invalidate): #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.2 * peso_massimo_singolo
@@ -738,14 +652,12 @@ def distanceMetric11(spec,tipo_specializzazioni, simili, lenght, invalidate): #o
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 11 (Derivata da 8)", 70 * '-')
-    print("Calcolo: invalidate (1) + specializzate del log originale di primo livello (0.25) + altre specializzate del log originale (0.5) + simili (0.05)")
-    print("Normalizzate rispetto la lunghezza del log originale")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 10", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
-def distanceMetric12(nuove, lenght, invalidate, generalizzate, specializzate): #ok
+def distanceMetric11(nuove, lenght, invalidate, generalizzate, specializzate): #ok
     peso_massimo_singolo = 1
 
     peso_specializzate = 0.1 * peso_massimo_singolo
@@ -768,14 +680,12 @@ def distanceMetric12(nuove, lenght, invalidate, generalizzate, specializzate): #
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 4", 70 * '-')
-    print("Calcolo: nuove (1) + invalidate (1)")
-    print("Normalizzate rispetto la lunghezza dell'unione dei due log")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 11", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
-def distanceMetric13(spec, simili, lenght, invalidate):  #ok
+def distanceMetric12(spec, simili, lenght, invalidate):  #ok
     peso_massimo_singolo = 1
     # Calcolo del peso per le RFD specializzate e simili
     peso_specializzate = 0.3 * peso_massimo_singolo
@@ -801,18 +711,16 @@ def distanceMetric13(spec, simili, lenght, invalidate):  #ok
     if(distanza>1):
         distanza=1
 
-    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 13", 70 * '-')
-    print("Calcolo: invalidate (1) + specializzate del log originale (0.2) + simili (0.02)")
-    print("Normalizzate rispetto la lunghezza del log originale")
+    print(bcolors.OKBLUE + "", 70 * '-', "Metrica 12", 70 * '-')
     print(bcolors.OKBLUE + "Distanza: " + bcolors.WARNING, distanza)
 
     return distanza
 
 
-def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_results):
+def checkRFDChange(percentages, target_label, current_enc_f1_perf, version):
 
     local_percentages=percentages.copy()
-    filename = f"../MinimalRFDS/MinimalRFDs_v{version}_{str(encoding)}_{str(percentages[0])}.csv"
+    filename = f"../MinimalRFDS/MinimalRFDs_v{version}_{str(target_label)}_{str(percentages[0])}.csv"
 
     print(bcolors.ENDC + "Apro: ", filename)
 
@@ -829,18 +737,17 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
     # Metriche Confusion matrix 2
     ArrayF1_2 = np.empty(0)
     # Metriche Confusion matrix 2b
-    ArrayF1_2b = np.empty(0)
+    ArrayF1_3 = np.empty(0)
     # Metriche Confusion matrix 3
-    ArrayF1_3= np.empty(0)
-    # Metriche Confusion matrix 3b
-    ArrayF1_3b= np.empty(0)
-    # Metriche Confusion matrix 4
     ArrayF1_4= np.empty(0)
-    # Metriche Confusion matrix 5
+    # Metriche Confusion matrix 4
     ArrayF1_5= np.empty(0)
-    # Metriche Confusion matrix 6
+    # Metriche Confusion matrix 5
     ArrayF1_6= np.empty(0)
+    # Metriche Confusion matrix 6
+    ArrayF1_7= np.empty(0)
     #Distanze
+    ArrayD1 = np.empty(0)
     ArrayD2 = np.empty(0)
     ArrayD3 = np.empty(0)
     ArrayD4 = np.empty(0)
@@ -852,13 +759,12 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
     ArrayD10 = np.empty(0)
     ArrayD11 = np.empty(0)
     ArrayD12 = np.empty(0)
-    ArrayD13 = np.empty(0)
 
 
     for percentage in local_percentages:
 
 
-        filename = f"../MinimalRFDS/MinimalRFDs_v{version}_{str(encoding)}_{str(percentage)}.csv"
+        filename = f"../MinimalRFDS/MinimalRFDs_v{version}_{str(target_label)}_{str(percentage)}.csv"
 
         #Dataframe con le RFD aggiornate
         new_df=pd.read_csv(filename, sep=';')
@@ -1114,7 +1020,7 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
                             pass
 
 
-        print("Analisi per ", str(encoding), " con percentuale ", str(percentage), "completata:")
+        print("Analisi per ", str(target_label), " con percentuale ", str(percentage), "completata:")
         print(bcolors.PETROL_GREEN + "RFD immutate: " + bcolors.WARNING, immutate, bcolors.PETROL_GREEN + "(",
               ((immutate * 100) / len(originaldf)), " delle RFD originali)")
         print(bcolors.PETROL_GREEN + "RFD invalidate: " + bcolors.WARNING, invalidate, bcolors.PETROL_GREEN + "(",
@@ -1260,40 +1166,39 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
 
 
         #Risultati metriche confusion matrix
-        rec, pre, acc, f1 = confusion_matrix_score(immutate, nuove, invalidate)
-        rec_2, pre_2, acc_2, f1_2 = confusion_matrix_score2(immutate, (generalizzate-(generalizzate_con_stesse_soglie+generalizzate_sx_dx)), (simili-(simili_spec_dx+simili_spec_sx+simili_spec_sx_dx)), generalizzate_con_stesse_soglie+generalizzate_sx_dx, (simili_spec_sx + simili_spec_dx + simili_spec_sx_dx) ,nuove, invalidate)
-        rec_2b, pre_2b, acc_2b, f1_2b = confusion_matrix_score2b(immutate, generalizzate_con_stesse_soglie + generalizzate_sx_dx,(simili_spec_sx + simili_spec_dx + simili_spec_sx_dx), nuove, invalidate)
-        rec_3, pre_3, acc_3, f1_3 = confusion_matrix_score3(immutate, generalizzate, simili, nuove, invalidate)
-        rec_3b, pre_3b, acc_3b, f1_3b = confusion_matrix_score3b(immutate, specializzate, simili, nuove, invalidate)
-        rec_4, pre_4, acc_4, f1_4 = confusion_matrix_score4(immutate, specializzate, nuove, invalidate)
-        rec_5, pre_5, acc_5, f1_5 = confusion_matrix_score5(immutate, specializzate, nuove, invalidate, generalizzate)
-        rec_6, pre_6, acc_6, f1_6 = confusion_matrix_score6(immutate, specializzate, nuove, invalidate, generalizzate)
+        rec, pre, acc, f1 = confusion_matrix_score_1(immutate, nuove, invalidate)
+        rec_2, pre_2, acc_2, f1_2 = confusion_matrix_score_2(immutate, (generalizzate-(generalizzate_con_stesse_soglie+generalizzate_sx_dx)), (simili-(simili_spec_dx+simili_spec_sx+simili_spec_sx_dx)), generalizzate_con_stesse_soglie+generalizzate_sx_dx, (simili_spec_sx + simili_spec_dx + simili_spec_sx_dx) ,nuove, invalidate)
+        rec_3, pre_3, acc_3, f1_3 = confusion_matrix_score_3(immutate, generalizzate_con_stesse_soglie + generalizzate_sx_dx,(simili_spec_sx + simili_spec_dx + simili_spec_sx_dx), nuove, invalidate)
+        rec_4, pre_4, acc_4, f1_4 = confusion_matrix_score_4(immutate, generalizzate, simili, nuove, invalidate)
+        rec_5, pre_5, acc_5, f1_5 = confusion_matrix_score_5(immutate, specializzate, nuove, invalidate)
+        rec_6, pre_6, acc_6, f1_6 = confusion_matrix_score_6(immutate, specializzate, nuove, invalidate, generalizzate)
+        rec_7, pre_7, acc_7, f1_7 = confusion_matrix_score_7(immutate, specializzate, nuove, invalidate, generalizzate)
 
         #Risultati distanze tra i due log
-        dist2=distanceMetric2(nuove, generalizzate, simili, len(new_df))
-        dist3=distanceMetric3(nuove, generalizzate, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist4=distanceMetric4(nuove, (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist5=distanceMetric5(nuove, generalizzate, generalizzazioni, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist6=distanceMetric6(specializzate, simili, len(originaldf), invalidate)
-        dist7=distanceMetric7(nuove, generalizzate, (simili_spec_sx+simili_spec_dx+simili_spec_sx_dx), (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist8=distanceMetric8(specializzate, specializzazioni, simili, len(originaldf), invalidate)
-        dist9=distanceMetric9(nuove, generalizzate_con_stesse_soglie + generalizzate_sx_dx, (simili_spec_sx + simili_spec_dx + simili_spec_sx_dx), (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist10=distanceMetric10(nuove, specializzate, specializzazioni, generalizzate, generalizzazioni, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
-        dist11=distanceMetric11(specializzate, specializzazioni, simili, len(originaldf), invalidate)
-        dist12=distanceMetric12(nuove, (len(new_df) + len(originaldf)) - immutate, invalidate, generalizzate, specializzate)
-        dist13=distanceMetric13(specializzate, simili, len(originaldf), invalidate)
+        dist1=distanceMetric1(nuove, generalizzate, simili, len(new_df))
+        dist2=distanceMetric2(nuove, generalizzate, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist3=distanceMetric3(nuove, (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist4=distanceMetric4(nuove, generalizzate, generalizzazioni, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist5=distanceMetric5(specializzate, simili, len(originaldf), invalidate)
+        dist6=distanceMetric6(nuove, generalizzate, (simili_spec_sx+simili_spec_dx+simili_spec_sx_dx), (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist7=distanceMetric7(specializzate, specializzazioni, simili, len(originaldf), invalidate)
+        dist8=distanceMetric8(nuove, generalizzate_con_stesse_soglie + generalizzate_sx_dx, (simili_spec_sx + simili_spec_dx + simili_spec_sx_dx), (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist9=distanceMetric9(nuove, specializzate, specializzazioni, generalizzate, generalizzazioni, simili, (len(new_df) + len(originaldf)) - immutate, invalidate)
+        dist10=distanceMetric10(specializzate, specializzazioni, simili, len(originaldf), invalidate)
+        dist11=distanceMetric11(nuove, (len(new_df) + len(originaldf)) - immutate, invalidate, generalizzate, specializzate)
+        dist12=distanceMetric12(specializzate, simili, len(originaldf), invalidate)
 
 
         #Append dei risultati
         ArrayF1=np.append(ArrayF1, f1)
         ArrayF1_2 = np.append(ArrayF1_2, f1_2)
-        ArrayF1_2b = np.append(ArrayF1_2b, f1_2b)
         ArrayF1_3 = np.append(ArrayF1_3, f1_3)
-        ArrayF1_3b = np.append(ArrayF1_3b, f1_3b)
         ArrayF1_4 = np.append(ArrayF1_4, f1_4)
         ArrayF1_5 = np.append(ArrayF1_5, f1_5)
         ArrayF1_6 = np.append(ArrayF1_6, f1_6)
+        ArrayF1_7 = np.append(ArrayF1_7, f1_7)
 
+        ArrayD1 = np.append(ArrayD1, dist1)
         ArrayD2 = np.append(ArrayD2, dist2)
         ArrayD3 = np.append(ArrayD3, dist3)
         ArrayD4 = np.append(ArrayD4, dist4)
@@ -1305,12 +1210,11 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
         ArrayD10 = np.append(ArrayD10, dist10)
         ArrayD11 = np.append(ArrayD11, dist11)
         ArrayD12 = np.append(ArrayD12, dist12)
-        ArrayD13 = np.append(ArrayD13, dist13)
 
         print(bcolors.OKBLUE, 151 * '-')
 
 
-    print(bcolors.TURQUOISE + "Risultati finali per l'encoding", encoding)
+    print(bcolors.TURQUOISE + "Risultati finali per l'encoding", target_label)
 
     print(bcolors.TURQUOISE + "F1-Modello" + bcolors.WARNING, current_enc_f1_perf, bcolors.ENDC)
 
@@ -1326,19 +1230,10 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
 
 
 
-    correlation_coefficient_f1_2b = np.corrcoef(current_enc_f1_perf, ArrayF1_2b)[0, 1]
-    distF1_2b=np.linalg.norm(current_enc_f1_perf - (ArrayF1_2b*100))
-    print(bcolors.TURQUOISE + "F1_2b-------" + bcolors.WARNING, ArrayF1_2b, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_2b, "distanza: ", distF1_2b)
-
-
 
     correlation_coefficient_f1_3 = np.corrcoef(current_enc_f1_perf, ArrayF1_3)[0, 1]
     distF1_3=np.linalg.norm(current_enc_f1_perf - (ArrayF1_3*100))
-    print(bcolors.TURQUOISE + "F1_3--------" + bcolors.WARNING, ArrayF1_3, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_3, "distanza: ", distF1_3)
-
-    correlation_coefficient_f1_3b = np.corrcoef(current_enc_f1_perf, ArrayF1_3b)[0, 1]
-    distF1_3b=np.linalg.norm(current_enc_f1_perf - (ArrayF1_3b*100))
-    print(bcolors.TURQUOISE + "F1_3b--------" + bcolors.WARNING, ArrayF1_3b, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_3b, "distanza: ", distF1_3b)
+    print(bcolors.TURQUOISE + "F1_3-------" + bcolors.WARNING, ArrayF1_3, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_3, "distanza: ", distF1_3)
 
 
 
@@ -1346,18 +1241,25 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
     distF1_4=np.linalg.norm(current_enc_f1_perf - (ArrayF1_4*100))
     print(bcolors.TURQUOISE + "F1_4--------" + bcolors.WARNING, ArrayF1_4, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_4, "distanza: ", distF1_4)
 
-
-
     correlation_coefficient_f1_5 = np.corrcoef(current_enc_f1_perf, ArrayF1_5)[0, 1]
     distF1_5=np.linalg.norm(current_enc_f1_perf - (ArrayF1_5*100))
-    print(bcolors.TURQUOISE + "F1_5--------" + bcolors.WARNING, ArrayF1_5, bcolors.ENDC, "correlazione: ",
-          correlation_coefficient_f1_5, "distanza: ", distF1_5)
+    print(bcolors.TURQUOISE + "F1_5--------" + bcolors.WARNING, ArrayF1_5, bcolors.ENDC, "correlazione: ", correlation_coefficient_f1_5, "distanza: ", distF1_5)
 
-    
     correlation_coefficient_f1_6 = np.corrcoef(current_enc_f1_perf, ArrayF1_6)[0, 1]
     distF1_6=np.linalg.norm(current_enc_f1_perf - (ArrayF1_6*100))
     print(bcolors.TURQUOISE + "F1_6--------" + bcolors.WARNING, ArrayF1_6, bcolors.ENDC, "correlazione: ",
           correlation_coefficient_f1_6, "distanza: ", distF1_6)
+
+    
+    correlation_coefficient_f1_7 = np.corrcoef(current_enc_f1_perf, ArrayF1_7)[0, 1]
+    distF1_7=np.linalg.norm(current_enc_f1_perf - (ArrayF1_7*100))
+    print(bcolors.TURQUOISE + "F1_7--------" + bcolors.WARNING, ArrayF1_7, bcolors.ENDC, "correlazione: ",
+          correlation_coefficient_f1_7, "distanza: ", distF1_7)
+
+
+    correlation_coefficient_d1_f1 = np.corrcoef(current_enc_f1_perf, ArrayD1)[0, 1]
+    print(bcolors.TURQUOISE + "D1----------" + bcolors.WARNING, ArrayD1, bcolors.ENDC)
+    print("-------------Correlazione con F1 score: ", correlation_coefficient_d1_f1)
 
 
     correlation_coefficient_d2_f1 = np.corrcoef(current_enc_f1_perf, ArrayD2)[0, 1]
@@ -1379,24 +1281,23 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
     print(bcolors.TURQUOISE + "D5----------" + bcolors.WARNING, ArrayD5, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d5_f1)
 
-
     correlation_coefficient_d6_f1 = np.corrcoef(current_enc_f1_perf, ArrayD6)[0, 1]
     print(bcolors.TURQUOISE + "D6----------" + bcolors.WARNING, ArrayD6, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d6_f1)
+
 
     correlation_coefficient_d7_f1 = np.corrcoef(current_enc_f1_perf, ArrayD7)[0, 1]
     print(bcolors.TURQUOISE + "D7----------" + bcolors.WARNING, ArrayD7, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d7_f1)
 
-
     correlation_coefficient_d8_f1 = np.corrcoef(current_enc_f1_perf, ArrayD8)[0, 1]
     print(bcolors.TURQUOISE + "D8----------" + bcolors.WARNING, ArrayD8, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d8_f1)
 
+
     correlation_coefficient_d9_f1 = np.corrcoef(current_enc_f1_perf, ArrayD9)[0, 1]
     print(bcolors.TURQUOISE + "D9----------" + bcolors.WARNING, ArrayD9, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d9_f1)
-
 
     correlation_coefficient_d10_f1 = np.corrcoef(current_enc_f1_perf, ArrayD10)[0, 1]
     print(bcolors.TURQUOISE + "D10----------" + bcolors.WARNING, ArrayD10, bcolors.ENDC)
@@ -1406,30 +1307,23 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
     print(bcolors.TURQUOISE + "D11----------" + bcolors.WARNING, ArrayD11, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d11_f1)
 
+
     correlation_coefficient_d12_f1 = np.corrcoef(current_enc_f1_perf, ArrayD12)[0, 1]
     print(bcolors.TURQUOISE + "D12----------" + bcolors.WARNING, ArrayD12, bcolors.ENDC)
     print("-------------Correlazione con F1 score: ", correlation_coefficient_d12_f1)
 
 
-    correlation_coefficient_d13_f1 = np.corrcoef(current_enc_f1_perf, ArrayD13)[0, 1]
-    print(bcolors.TURQUOISE + "D13----------" + bcolors.WARNING, ArrayD13, bcolors.ENDC)
-    print("-------------Correlazione con F1 score: ", correlation_coefficient_d13_f1)
-
-
     correlations_cf_f1 = np.array(
-        [correlation_coefficient_f1, correlation_coefficient_f1_2, correlation_coefficient_f1_2b,
-         correlation_coefficient_f1_3, correlation_coefficient_f1_3b, correlation_coefficient_f1_4, correlation_coefficient_f1_5, correlation_coefficient_f1_6])
+        [correlation_coefficient_f1, correlation_coefficient_f1_2, correlation_coefficient_f1_3,
+         correlation_coefficient_f1_4, correlation_coefficient_f1_5, correlation_coefficient_f1_6, correlation_coefficient_f1_7])
 
 
     # Correlazioni con l'F1-Score delle metriche.
     correlation_dist_f1 = np.array(
-        [correlation_coefficient_d2_f1, correlation_coefficient_d3_f1, correlation_coefficient_d4_f1,
-         correlation_coefficient_d5_f1, correlation_coefficient_d6_f1, correlation_coefficient_d7_f1, correlation_coefficient_d8_f1,
-         correlation_coefficient_d9_f1, correlation_coefficient_d10_f1, correlation_coefficient_d11_f1, correlation_coefficient_d12_f1,
-         correlation_coefficient_d13_f1])
-
-
-    dist_cf_f1=np.array([distF1, distF1_2, distF1_2b, distF1_3, distF1_3b, distF1_4, distF1_5, distF1_6])
+        [correlation_coefficient_d1_f1, correlation_coefficient_d2_f1, correlation_coefficient_d3_f1,
+         correlation_coefficient_d4_f1, correlation_coefficient_d5_f1, correlation_coefficient_d6_f1, correlation_coefficient_d7_f1,
+         correlation_coefficient_d8_f1, correlation_coefficient_d9_f1, correlation_coefficient_d10_f1, correlation_coefficient_d11_f1,
+         correlation_coefficient_d12_f1])
 
     risultati = {
         'correlations_cf_f1' : correlations_cf_f1,
@@ -1443,65 +1337,37 @@ def checkRFDChange(percentages, encoding, current_enc_f1_perf, version, write_re
 #=================================================================================================================================================================
 #=================================================================================================================================================================
 #====================================================================PARAMS=======================================================================================
-#Codifiche
-methods=[0,1]
-#Scenario
+#Classes
+classes=[0, 1]
+#Configuration
 version="20"
-#Scrittura nel file di risultati
-write_results=False
-#Percentuali di split (training + testing)
-#percentages=[20,30,60,90]
+#Splits
 percentages=[25,45,70,100]
+#Model F1
+f1_c0 =  np.array([91, 84, 81])
+f1_c1 =  np.array([93, 84, 84])
 #=================================================================================================================================================================
 #=================================================================================================================================================================
 #=================================================================================================================================================================
-start = time.time()
 
 #Riga da scrivere nel file di risultati
 raw_data=[]
 raw_data.append(version)
 
-
-#Dizionari per la stampa dei risultati
-#POS: Metriche che dovrebbero dare un risultato positivo (sono le metriche calcolate con la confusion matrix)
-risultati_pos = {}
-risultati_pos_incremental={}
-
-#NEG: Metriche che dovrebbero dare un risultato negativo (solo le correlazioni delle distanze calcolate)
-risultati_neg = {}
-risultati_neg_incremental = {}
-
-
 correlations_cf_f1 ={}
-correlations_cf_rec = {}
-correlations_cf_pre = {}
-
-
-
 correlation_dist_f1 ={}
-correlation_dist_rec = {}
-correlation_dist_pre = {}
-
-incremental_correlation_dist_f1 ={}
-incremental_correlation_dist_rec = {}
-incremental_correlation_dist_pre = {}
-
-f1_c0 =  np.array([91, 84, 81])
-f1_c1 =  np.array([93, 84, 84])
-
-
 perfomance_f1_encoding = np.array([f1_c0, f1_c1])
 
 
 i=0
 
-for encoding in methods:
+for encoding in classes:
     print(bcolors.WARNING + "", end='')
     print(80*'-')
     print(bcolors.WARNING, encoding)
     print(80*'-', bcolors.WARNING)
 
-    risultati=checkRFDChange(percentages, encoding,perfomance_f1_encoding[i],version, write_results)
+    risultati=checkRFDChange(percentages, encoding,perfomance_f1_encoding[i],version)
 
     # Unpacking del dizionario
     encoding_correlations_cf_f1 = risultati['correlations_cf_f1']
@@ -1516,8 +1382,8 @@ for encoding in methods:
     i+=1
 
 
-metrics_f1=["F1", "F1_2","F1_2b","F1_3", "F1_3b", "F1_4","F1_5", "F1_6"]
-distances=["D2","D3","D4","D5","D6","D7","D8","D9","D10","D11", "D12","D13"]
+metrics_f1=["CF_1", "CF_2","CF_3","CF_4", "CF_5","CF_6", "CF_7"]
+distances=["D1","D2","D3","D4","D5","D6","D7","D8","D9","D10", "D11","D12"]
 
 
 
@@ -1529,11 +1395,11 @@ c1_corr_dist_f1=correlation_dist_f1["1"]
 
 
 printResults(raw_data,c0_corr_cf_f1, c1_corr_cf_f1, metrics_f1, True,
-             "Correlazione delle metriche confusion matrix con F1 (media sugli encoding):", 0.80, ">")
+             "Average correlation of confusion matrix-based metrics with the model's F1:", 0.80, ">")
 
 
 
 #CORRELAZIONE DELLE DISTANZE
 printResults(raw_data,c0_corr_dist_f1, c1_corr_dist_f1, distances, False,
-             "Ranking correlazione delle distanze con F1 (media sugli encoding):", -0.70, "<")
+             "Average correlation of divergence metrics with the model's F1:", -0.70, "<")
 

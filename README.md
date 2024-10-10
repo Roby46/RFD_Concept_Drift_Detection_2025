@@ -43,3 +43,4 @@ The script will compute both the divergence metrics and the confusion matrix-bas
 For testing the baseline approaches we refer the reader to the [FROUROS](https://github.com/IFCA-Advanced-Computing/frouros) library, which provides the implementation of several Data Drift approaches, including those leveraged in the paper, i.e., Hellinger and HiNormalizedComplement. 
 
 ## Results
+The **Results** folder contains the results of RFD-based metrics in all the experiments. Specifically, **RankingCF** and **RankingDist** contain the results recorded on datasets with Known Drift for the confusion matrix-based metrics and the divergences, respectively. Similarly, **RankingCF_Unk** and **RankingDist_Unk** contain the results recorded on datasets with Unknown Drift. 

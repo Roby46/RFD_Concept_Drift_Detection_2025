@@ -1,4 +1,4 @@
-# RFD_Concept_Drift_Detection-2025
+# RFD_Concept_Drift_Detection_2025
 Supplemental material for the paper "A metadata-driven approach for concept drift detection in Machine Learning Systems"
 
 This repo includes a complete example of how to apply the proposed methodology described in the paper "A Metadata-Driven Approach for Concept Drift Detection in Machine Learning Systems."

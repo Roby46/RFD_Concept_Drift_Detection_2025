@@ -2,7 +2,7 @@
 Supplemental material for the paper "A metadata-driven approach for concept drift detection in Machine Learning Systems"
 
 
-<img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Approach.png?raw=true" width="80%">
+<img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Approach.png?raw=true" width="100%">
 
 This repo includes a complete example of how to apply the proposed methodology described in the paper "A Metadata-Driven Approach for Concept Drift Detection in Machine Learning Systems."
 

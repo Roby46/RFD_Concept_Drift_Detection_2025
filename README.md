@@ -15,7 +15,8 @@ Nevertheless, a suitable test configuration should have the same structure of th
 in the **Generate Configuration/1** folder, which shows an example of the aforementioned script, wich creates a folder named with the value of the **version** parameter. 
 The important files inside this folder are those starting with **"Version_"**, since they represent the dataset being incrementally updated with the new data batches. These files are leveraged by the **split.py** script that can be found in the **Splitted_with_predictions** folder. This script splits the data in each batch according to the target label, as described in our methodology.
 The results are saved in subfolders associated with the percentage of the test batch. For instance, since the first test batch represent the 25% of the dataset, its splitted version can be found in the **25** folder. 
-![alt text](https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Folder.png?raw=true)
+
+<img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Folder.png?raw=true" width="50%">
 
 ## RFD Analysis
 After performing RFDc Discovery with a suitable algorithm on all the splitted data batches, the resulting RFD are filtered according to the strategy described in the paper. Thus, for each class and for each data batch, the filtered RFDs are stored in the
@@ -34,7 +35,9 @@ f1_c1 =  np.array([93, 84, 84])
 ```
 The script will compute both the divergence metrics and the confusion matrix-based metrics and will show the final correlation obtained by them. 
 An example of output is the following:
-![alt text](https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Correlations.png?raw=true)
+
+<br><br>
+<img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Correlations.png?raw=true" width="80%">
 
   
 ## Baseline Approaches

@@ -47,7 +47,6 @@ An example of output is the following:
 
   
 ## Baseline Approaches
-For testing the baseline approaches we refer the reader to the [FROUROS](https://github.com/IFCA-Advanced-Computing/frouros)
-library, which provides the implementation of several Data Drift approaches, including those leveraged in the paper, i.e., Hellinger and HiNormalizedComplement. 
+For testing the baseline approaches we refer the reader to the [FROUROS](https://github.com/IFCA-Advanced-Computing/frouros) library, which provides the implementation of several Data Drift approaches, including those leveraged in the paper, i.e., Hellinger and HiNormalizedComplement. 
 
 ## Results

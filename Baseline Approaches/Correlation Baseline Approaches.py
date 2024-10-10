@@ -147,4 +147,4 @@ metrics=["Hellinger MAX", "Hellinger MEAN", "HiNorm MAX", "Hinorm MEAN"]
 raw_data=[]
 
 printResults(raw_data,c0_corr_f1,c1_corr_f1, metrics, False,
-             "Correlazione delle metriche con F1 (media sugli encoding):", -0.70, "<")
+             "Average Correlation of the baseline metrics with the model's F1:", -0.70, "<")

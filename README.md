@@ -1,4 +1,4 @@
-# RFD_Concept_Drift_Detection-2025
+# RFD_Concept_Drift_Detection_2025
 Supplemental material for the paper "A metadata-driven approach for concept drift detection in Machine Learning Systems"
 
 

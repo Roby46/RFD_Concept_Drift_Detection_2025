@@ -48,7 +48,7 @@ The script will compute both the divergence metrics and the confusion matrix-bas
 
 <img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Correlations.png?raw=true" width="80%">
 
-The script also appends the results in the file Ranking_All_Metrics.csv.
+The script also appends the results in the file Ranking_All_Metrics.csv, ranking both type of metrics.
 
   
 ## Baseline Approaches

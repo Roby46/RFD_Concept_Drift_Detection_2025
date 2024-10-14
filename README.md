@@ -19,13 +19,16 @@ The results are saved in subfolders associated with the percentage of the test b
 ## RFD Filtering
 After performing RFDc Discovery with a suitable algorithm on all the splitted data batches, the resulting RFD are filtered according to the strategy described in the paper. 
 
-Thus, for each class and for each data batch, the filtered RFDs are stored in the **MinimalRFDS** folder. For example, this repository contains the minimal RFDcs related to experiment with ID 20 reported in the paper. 
-The syntax used to represent RFDs should be the following:
+The discovery results are stored in the **RFDs/OriginalRFDs** folder. The syntax used to represent RFDs should be the following:
 ```
 RHS;COL0;COL1;COL2;COL3;COL4;COL5;COL6;COL7;COL8;COL9;COL10;COL11;COL12;COL13;COL14;COL15
 COL0;1.0;0.0;?;0.0;0.0;0.0;?;?;?;?;?;?;?;?;?;?
 ```
 Specifically, each RFD is represented by a row The column **RHS** contains the attribute present in the RHS of the RFD. The attributes whose values are "?" are not involved in the RFD, whereas otherwise its associated similarity threshold is reported. For example, the example above represent the RFD: COL1(0.0), COL3(0.0), COL4(0.0), COL5(0.0)-->COL0(1.0).
+
+These RFD sets can be filtered by using the two scritps provided in the **RFDs** folder: SplitRFDs.py splits the RFD sets and finds the unique RFDs for each class. MinimalityChecker.py, instead, perform a further RFD filtering by keeping for each class only dependencies that are minimal with respect to the RFD of all other classes.
+
+The  filtered RFDs are stored in the **MinimalRFDS** folder. For example, this repository contains the minimal RFDcs related to experiment with ID 20 reported in the paper. 
 
 ## RFD Analysis
 

@@ -17,7 +17,7 @@ The results are saved in subfolders associated with the percentage of the test b
 <img src="https://github.com/Roby46/RFD_Concept_Drift_Detection_2025/blob/main/Images/Folder.png?raw=true" width="50%">
 
 ## RFD Filtering
-After performing RFDc Discovery with a suitable algorithm on all the splitted data batches, the resulting RFD are filtered according to the strategy described in the paper. 
+After performing RFDc Discovery with a suitable algorithm on all the splitted data batches, the discovered sets of RFDs can be analyzed. 
 
 The discovery results are stored in the **RFDs/OriginalRFDs** folder. The syntax used to represent RFDs should be the following:
 ```
